@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <script src="script.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/cookie.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="cookie">
+                <button id="cookie" onclick="increaseScore()"></button>
+            </div>
+            <div id="money">0$</div>
+        </div>
+
+        <div class="shop">
+            <h2>Shop</h2>
+            <div class="shop-item" onclick="buyItem('cursor')">
+                <span id="item-cursor">Cursor (10$) – +2 Clicks [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('grandma')">
+                <span id="item-grandma">Grandma (20$) – +10 production [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('farm')">
+                <span id="item-farm">Farm (200$) – +20 production [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('mine')">
+                <span id="item-farm">Mine (200$) – +50 production[LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('factory')">
+                <span id="item-farm">Factory (1.000$) – +100 production [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('bank')">
+                <span id="item-farm">Bank (2.500$) – +200 production [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('temple')">
+                <span id="item-farm">Temple (4.000$) – +320 production [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('wizard_tower')">
+                <span id="item-farm">Wizard Tower (10.000$) – +500 production [LEVEL 1]</span>
+            </div>
+            <div class="shop-item" onclick="buyItem('shipment')">
+                <span id="item-farm">Shipment (30.000$) – +700 production [LEVEL 1]</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

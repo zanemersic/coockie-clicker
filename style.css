@@ -1,0 +1,360 @@
+/* ===========================
+   Cookie Clicker — THEME CSS
+   =========================== */
+
+/* ----- Theme Variables ----- */
+:root{
+  --bg:#1b0f07;          /* dark cocoa */
+  --bg-accent:#24140a;   /* deeper cocoa */
+  --cream:#fff5de;       /* sugar cream */
+  --tan:#d9b98f;         /* baked dough */
+  --tan-2:#b9905f;       /* caramel */
+  --gold:#f0c97d;        /* honey gold */
+  --choc:#5a3b22;        /* chocolate chips */
+  --accent:#8b5a2b;      /* cookie edge */
+  --green:#6fdc7e;       /* success */
+  --red:#ff8a7a;         /* error */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ----- Global Reset ----- */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--cream);
+  background:
+    radial-gradient(1200px 800px at 20% -10%, #3a2312 0%, transparent 60%),
+    radial-gradient(900px 700px at 120% 110%, #3a2312 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-accent) 100%);
+  overflow:hidden;
+}
+
+/* Subtle cookie crumbs in the background */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.04) 2px, transparent 3px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,.03) 2px, transparent 3px),
+    radial-gradient(circle at 30% 80%, rgba(255,255,255,.03) 2px, transparent 3px),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,.03) 2px, transparent 3px);
+  background-size: 140px 140px, 180px 180px, 160px 160px, 200px 200px;
+  pointer-events:none;
+}
+
+/* ----- Layout ----- */
+.container{
+  display:flex;
+  height:100vh;
+  max-width:1400px;
+  margin:0 auto;
+  gap:20px;
+  padding:24px;
+}
+
+/* Left side — game area */
+.left-side{
+  flex:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  background: linear-gradient(180deg, rgba(255,245,222,.06), rgba(255,245,222,.02));
+  border:1px solid rgba(255,245,222,.08);
+  border-radius:24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow:hidden;
+}
+
+/* Glow accent */
+.left-side::after{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background: radial-gradient(closest-side, rgba(240,201,125,.18), transparent 70%);
+  top:-120px; right:-120px;
+  filter: blur(10px);
+  pointer-events:none;
+}
+
+/* Money display */
+#money{
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: var(--gold);
+  text-shadow: 0 2px 0 rgba(0,0,0,.5);
+  padding: 10px 18px;
+  background: rgba(255,245,222,.06);
+  border: 1px solid rgba(255,245,222,.15);
+  border-radius: 14px;
+  backdrop-filter: blur(4px);
+}
+
+/* ----- Cookie Button ----- */
+.cookie{ margin-bottom:10px; }
+
+#cookie{
+  --size: clamp(180px, 28vw, 320px);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border:none;
+  cursor:pointer;
+  position: relative;
+  display:inline-block;
+  background:
+    radial-gradient(circle at 60% 30%, rgba(255,255,255,.25) 0%, transparent 35%),
+    radial-gradient(circle at 40% 70%, rgba(0,0,0,.08) 0%, transparent 45%),
+    var(--tan);
+  box-shadow:
+    inset 0 -10px 0 rgba(0,0,0,.15),
+    inset 0 10px 0 rgba(255,255,255,.08),
+    0 18px 30px rgba(0,0,0,.4);
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+  outline: 6px solid var(--accent);
+}
+
+/* Chocolate chips */
+#cookie::before, #cookie::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 25% 30%, var(--choc) 0 6px, transparent 7px),
+    radial-gradient(circle at 65% 25%, var(--choc) 0 7px, transparent 8px),
+    radial-gradient(circle at 70% 60%, var(--choc) 0 8px, transparent 9px),
+    radial-gradient(circle at 40% 55%, var(--choc) 0 6px, transparent 7px),
+    radial-gradient(circle at 55% 75%, var(--choc) 0 7px, transparent 8px),
+    radial-gradient(circle at 30% 75%, var(--choc) 0 5px, transparent 6px);
+  pointer-events:none;
+}
+#cookie::after{
+  transform: rotate(22deg);
+  opacity:.75;
+  filter: blur(.3px);
+}
+
+/* Interactive states */
+#cookie:hover{
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.02);
+  box-shadow:
+    inset 0 -10px 0 rgba(0,0,0,.14),
+    inset 0 10px 0 rgba(255,255,255,.1),
+    0 24px 36px rgba(0,0,0,.5);
+}
+#cookie:active{
+  transform: translateY(2px) scale(.98);
+  box-shadow:
+    inset 0 -5px 0 rgba(0,0,0,.14),
+    inset 0 6px 0 rgba(255,255,255,.08),
+    0 12px 18px rgba(0,0,0,.45);
+}
+
+/* Focus pulse */
+#cookie:focus-visible{
+  outline: 3px dashed var(--gold);
+  outline-offset: 6px;
+  animation: cookiePulse 1.2s ease infinite;
+}
+@keyframes cookiePulse{
+  0%{ box-shadow: 0 0 0 0 rgba(240,201,125,.45); }
+  100%{ box-shadow: 0 0 0 24px rgba(240,201,125,0); }
+}
+
+/* ----- Shop Panel ----- */
+.shop{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  background: linear-gradient(180deg, rgba(255,245,222,.12), rgba(255,245,222,.03));
+  border:1px solid rgba(255,245,222,.1);
+  border-radius:24px;
+  box-shadow: var(--shadow);
+  overflow:auto;
+  padding: 18px 18px 22px;
+  min-width: 0;
+  scrollbar-gutter: stable both-edges;
+}
+
+.shop h2{
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,245,222,.14), rgba(255,245,222,.05));
+  border: 1px solid rgba(255,245,222,.15);
+  text-align:center;
+  color: var(--gold);
+  font-size: clamp(22px, 2vw, 28px);
+  letter-spacing: .6px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.6);
+}
+
+/* Shop items */
+.shop-item{
+  background: linear-gradient(180deg, rgba(255,245,222,.12), rgba(255,245,222,.04));
+  border: 1px solid rgba(255,245,222,.18);
+  color: var(--cream);
+  border-radius:18px;
+  padding: 10px 12px 10px 14px;
+  margin: 10px 0;
+  cursor:pointer;
+  position:relative;
+  transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  box-shadow: 0 10px 18px rgba(0,0,0,.25);
+  max-width: 100%;
+  overflow: hidden;
+}
+.shop-item:hover{
+  transform: translateY(-2px);
+  border-color: rgba(240,201,125,.55);
+  box-shadow: 0 16px 28px rgba(0,0,0,.35);
+  background: linear-gradient(180deg, rgba(255,245,222,.18), rgba(255,245,222,.08));
+}
+.shop-item:active{ transform: translateY(1px); }
+
+/* Golden stripe */
+.shop-item::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:3px;
+  border-top-left-radius:16px;
+  border-bottom-left-radius:16px;
+  background: linear-gradient(180deg, var(--gold), #d5ad5f);
+  opacity:.7;
+}
+
+/* Shop item content row */
+.shop-item span{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight:700;
+  letter-spacing:.3px;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
+  font-size: 15px;
+  white-space: nowrap;         /* brez preloma */
+  overflow: hidden;
+  text-overflow: ellipsis;     /* ... */
+  padding-right: 6px;
+}
+
+/* Ikona v krogcu */
+.shop-item span::before{
+  content: "🍪";
+  flex: 0 0 34px;
+  width: 34px; height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,245,222,.28), rgba(255,245,222,.12));
+  border: 1px solid rgba(255,245,222,.22);
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.18);
+  color: var(--cream);
+  text-shadow: 0 1px 0 rgba(0,0,0,.55);
+}
+
+/* Ikone po tipu */
+.shop-item[onclick*="cursor"]       span::before { content: "🖱️"; }
+.shop-item[onclick*="grandma"]      span::before { content: "👵"; }
+.shop-item[onclick*="farm"]         span::before { content: "🌾"; }
+.shop-item[onclick*="mine"]         span::before { content: "⛏️"; }
+.shop-item[onclick*="factory"]      span::before { content: "🏭"; }
+.shop-item[onclick*="bank"]         span::before { content: "🏦"; }
+.shop-item[onclick*="temple"]       span::before { content: "🛕"; }
+.shop-item[onclick*="wizard_tower"] span::before { content: "🧙"; }
+.shop-item[onclick*="shipment"]     span::before { content: "🚀"; }
+
+/* Affordable glow */
+.shop-item.affordable {
+  border-color: rgba(240,201,125,.9);
+  background: linear-gradient(180deg, rgba(255,245,222,.28), rgba(255,245,222,.12));
+  box-shadow: 0 18px 30px rgba(0,0,0,.4), 0 0 0 2px rgba(240,201,125,.25) inset;
+}
+.shop-item.affordable:hover { transform: translateY(-3px) scale(1.01); }
+.shop-item.affordable span::before{
+  box-shadow: 0 0 0 2px rgba(240,201,125,.28), inset 0 2px 3px rgba(0,0,0,.18);
+}
+
+/* Hover animacija ikone */
+.shop-item:hover span::before{
+  transform: translateY(-1px) scale(1.03);
+  transition: transform .12s ease;
+}
+
+/* Disabled look */
+.shop-item.disabled {
+  opacity: .6;
+  filter: grayscale(.2);
+  cursor: not-allowed;
+}
+
+/* ----- Scrollbar ----- */
+.shop::-webkit-scrollbar{ width:10px; }
+.shop::-webkit-scrollbar-track{
+  background: rgba(255,245,222,.05);
+  border-radius:10px;
+}
+.shop::-webkit-scrollbar-thumb{
+  background: rgba(240,201,125,.6);
+  border-radius:10px;
+  border: 2px solid rgba(27,15,7,.6);
+}
+.shop::-webkit-scrollbar-thumb:hover{
+  background: rgba(240,201,125,.8);
+}
+
+/* ----- Responsive tweaks ----- */
+@media (max-width: 980px){
+  .container{ flex-direction:column; padding:16px; gap:16px; }
+  .shop{ height:auto; max-height: 52vh; }
+  #cookie{ --size: clamp(160px, 42vw, 320px); }
+}
+@media (max-width: 520px){
+  #money{ font-size:25px; padding:8px 14px; }
+}
+
+/* === Money bump animation === */
+#money.bump { animation: moneyBump 300ms ease; }
+@keyframes moneyBump {
+  0%   { transform: translateY(0) scale(1);   filter: brightness(1); }
+  40%  { transform: translateY(-2px) scale(1.08); filter: brightness(1.15); }
+  100% { transform: translateY(0) scale(1);   filter: brightness(1); }
+}
+
+/* === Floating +X particles === */
+.floatie {
+  position: fixed;
+  left: 0; top: 0;
+  pointer-events: none;
+  font-weight: 800;
+  color: var(--gold, #f0c97d);
+  text-shadow: 0 1px 0 rgba(0,0,0,.6);
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(10px) scale(.9);
+  animation: floatieRise 900ms ease forwards;
+  will-change: transform, opacity;
+}
+@keyframes floatieRise {
+  10%  { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translateY(-40px) scale(1.05); }
+}
